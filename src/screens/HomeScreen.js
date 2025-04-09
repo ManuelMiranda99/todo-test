@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, View, Text, FlatList, Pressable } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../components/Button";
+import { removeTodo } from "../store/todos/todos-slice";
 
 export default function HomeScreen({ navigation }) {
   const dispatch = useDispatch();
@@ -11,7 +12,7 @@ export default function HomeScreen({ navigation }) {
     navigation.navigate("AddTask");
   };
 
-  const removeTodo = (todo) => {
+  const handleRemoveTodo = (todo) => {
     dispatch(removeTodo(todo));
   };
 
@@ -24,7 +25,7 @@ export default function HomeScreen({ navigation }) {
       <FlatList
         data={todos}
         renderItem={(todo, index) => (
-          <Pressable onPress={() => removeTodo(todo.item)}>
+          <Pressable onPress={() => handleRemoveTodo(todo.item)}>
             <Text>{todo.item}</Text>
           </Pressable>
         )}
